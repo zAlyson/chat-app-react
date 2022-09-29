@@ -10,12 +10,15 @@ import { TbEdit } from 'react-icons/tb';
 import { ConversationType } from '../../utils/types/types';
 
 import styles from './index.module.scss';
+import { useNavigate } from 'react-router-dom';
 
 type Props = {
   conversations: ConversationType[];
 };
 
 export const ConversationSideBar: FC<Props> = ({ conversations }) => {
+  const navigate = useNavigate();
+
   return (
     <ConversationSideBarStyle>
       <ConversationSidebarHeader>
@@ -25,7 +28,9 @@ export const ConversationSideBar: FC<Props> = ({ conversations }) => {
 
       <ConversationSidebarContainer>
         {conversations.map(conversation => (
-          <ConversationSidebarItem>
+          <ConversationSidebarItem
+            onClick={() => navigate(`/conversations/${conversation.id}`)}
+          >
             <div className={styles.conversationAvatar}></div>
             <div>
               <span className={styles.conversationName}>

@@ -80,10 +80,20 @@ export const ConversationSideBarStyle = styled.aside`
   width: ${SIDEBAR_WIDTH}px;
   background-color: #1a1a1a;
   border-right: 1px solid #5454543d;
+
   overflow-y: scroll;
+
   &::-webkit-scrollbar {
     display: none;
+    /* width: 10px;
+    height: 5px;
+    */
   }
+
+  /*&::-webkit-scrollbar-thumb {
+    background-color: #292929;
+    border-radius: 50px;
+  }*/
 `;
 
 export const ConversationSidebarHeader = styled.header`
