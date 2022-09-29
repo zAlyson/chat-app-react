@@ -1,35 +1,56 @@
-import React from 'react';
+import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { Button, InputContainer, InputField, InputLabel } from '../../styles';
 
 import styles from './index.module.scss';
 
 export const RegisterForm = () => {
-  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    console.log(event);
-    event.preventDefault();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data: any) => {
+    console.log(data);
   };
 
   return (
-    <form className={styles.form} onSubmit={onSubmit}>
+    <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
       <InputContainer>
         <InputLabel htmlFor="email">Email</InputLabel>
-        <InputField type="email" id="email" />
+        <InputField
+          type="email"
+          id="email"
+          {...register('email', { required: 'Email Is Required' })}
+        />
       </InputContainer>
 
       <section className={styles.nameFieldRow}>
         <InputContainer>
           <InputLabel htmlFor="firstName">First Name</InputLabel>
-          <InputField type="text" id="firstName" />
+          <InputField
+            type="text"
+            id="firstName"
+            {...register('firstName', { required: 'First Name Is Required' })}
+          />
         </InputContainer>
         <InputContainer>
           <InputLabel htmlFor="lastName">Last Name</InputLabel>
-          <InputField type="text" id="lastName" />
+          <InputField
+            type="text"
+            id="lastName"
+            {...register('lastName', { required: 'Last Name Is Required' })}
+          />
         </InputContainer>
       </section>
       <InputContainer>
         <InputLabel htmlFor="password">Password</InputLabel>
-        <InputField type="password" id="password" />
+        <InputField
+          type="password"
+          id="password"
+          {...register('password', { required: 'Password Is Required' })}
+        />
       </InputContainer>
 
       <Button className={styles.button}>Create My Account</Button>
